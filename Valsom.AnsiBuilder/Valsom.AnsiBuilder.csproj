@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Valsom.AnsiBuilder</Authors>
-    <Company>Somfic</Company>
-    <Version>0.1.0-alpha0008</Version>
+    <Authors>Somfic</Authors>
+    <Company>Valsom</Company>
+    <Version>0.1.0</Version>
     <Description>Tool to easily write strings with ANSI character formatting</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Valsom/AnsiBuilder</RepositoryUrl>
     <PackageTags>ANSI</PackageTags>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
-    <InformationalVersion>0.1.0-alpha.8+Branch.dev.Sha.9bdfe22a1e7b4303b945546e6308454e41f94437</InformationalVersion>
+    <InformationalVersion>0.1.0+19.Branch.main.Sha.4cc33624e3ff56ca292209a1825278fa494dec73</InformationalVersion>
+    <PackageProjectUrl>https://github.com/Valsom/AnsiBuilder</PackageProjectUrl>
   </PropertyGroup>
 </Project>
