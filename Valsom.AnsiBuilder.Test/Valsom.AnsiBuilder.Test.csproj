@@ -4,7 +4,7 @@
     <IsPackable>false</IsPackable>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
-    <InformationalVersion>0.1.0+12.Branch.main.Sha.58a72a88fe5b01c7f07d7e4dc78d676641ffddec</InformationalVersion>
+    <InformationalVersion>0.1.0+15.Branch.main.Sha.bcfbab835f71dab3cfc0cdb2ade0616d6626a405</InformationalVersion>
     <Version>0.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
