@@ -75,7 +75,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
-          name: Build
+          name: build
 
       - name: Authorize with Github Package Registry
         run: dotnet nuget add source https://nuget.pkg.github.com/${{ github.event.repository_owner }}/index.json -n "github" -u "${{ github.event.repository_owner }}" -p "${{secrets.ADMIN_TOKEN}}"
