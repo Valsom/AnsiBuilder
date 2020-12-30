@@ -139,7 +139,7 @@ jobs:
           echo '::set-output name=applicable::${{env.GitVersion_PreReleaseLabel == 'alpha' || env.GitVersion_PreReleaseLabel == 'beta' }}'
 
       - name: Enable branch protection bypass
-        if: ${{ steps.VERSION.outputs.applicable == 'true' && steps.extract_branch.outputs.branch == 'main'}}
+        if: ${{ steps.extract_branch.outputs.branch == 'main'}}
         uses: Somfic/bypass-branch-protection@1.0.3
         id: BYPASS
         with:
@@ -156,7 +156,7 @@ jobs:
 
       - name: Disable branch protection bypass
         uses: Somfic/bypass-branch-protection@1.0.3
-        if: ${{always() && steps.VERSION.outputs.applicable == 'true' && steps.extract_branch.outputs.branch == 'main'}}
+        if: ${{always() && steps.extract_branch.outputs.branch == 'main'}}
         with:
           token: ${{secrets.ADMIN_TOKEN}}
           branch: ${{steps.extract_branch.outputs.branch}}
