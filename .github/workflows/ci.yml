@@ -136,10 +136,10 @@ jobs:
           echo '::set-output name=label::${{env.GitVersion_PreReleaseLabel}}'
           echo '::set-output name=semver::${{env.GitVersion_LegacySemVer}}'
           echo '::set-output name=nuget::${{env.GitVersion_NuGetPreReleaseTagV2}}'
-          echo '::set-output name=applicable::${{env.GitVersion_PreReleaseLabel == 'alpha' || env.GitVersion_PreReleaseLabel == 'beta' || steps.extract_branch.outputs.branch == 'main' }}'
+          echo '::set-output name=applicable::${{env.GitVersion_PreReleaseLabel == 'alpha' || env.GitVersion_PreReleaseLabel == 'beta' }}'
 
       - name: Enable branch protection bypass
-        if: ${{ steps.VERSION.outputs.applicable == 'true' && steps.extract_branch.outputs.branch == 'main'}}
+        if: ${{ steps.extract_branch.outputs.branch == 'main'}}
         uses: Somfic/bypass-branch-protection@1.0.3
         id: BYPASS
         with:
@@ -147,7 +147,7 @@ jobs:
           branch: ${{steps.extract_branch.outputs.branch}}
 
       - name: Apply changes
-        if: ${{ steps.VERSION.outputs.applicable == 'true' }}
+        if: ${{ steps.VERSION.outputs.applicable == 'true' || steps.extract_branch.outputs.branch == 'main' }}
         uses: EndBug/add-and-commit@v6.2.0
         with:
           author_name: github-actions[bot]
@@ -156,7 +156,7 @@ jobs:
 
       - name: Disable branch protection bypass
         uses: Somfic/bypass-branch-protection@1.0.3
-        if: ${{always() && steps.VERSION.outputs.applicable == 'true' && steps.extract_branch.outputs.branch == 'main'}}
+        if: ${{always() && steps.extract_branch.outputs.branch == 'main'}}
         with:
           token: ${{secrets.ADMIN_TOKEN}}
           branch: ${{steps.extract_branch.outputs.branch}}
