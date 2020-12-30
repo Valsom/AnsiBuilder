@@ -3,13 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Valsom.AnsiBuilder</Authors>
     <Company>Somfic</Company>
-    <Version>0.1.0-alpha0008</Version>
+    <Version>0.1.0</Version>
     <Description>Tool to easily write strings with ANSI character formatting</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Valsom/AnsiBuilder</RepositoryUrl>
     <PackageTags>ANSI</PackageTags>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
-    <InformationalVersion>0.1.0-alpha.8+Branch.dev.Sha.9bdfe22a1e7b4303b945546e6308454e41f94437</InformationalVersion>
+    <InformationalVersion>0.1.0+10.Branch.main.Sha.7d42e507da43f210dfb73d2ed948bc76f0cfefe1</InformationalVersion>
   </PropertyGroup>
 </Project>
