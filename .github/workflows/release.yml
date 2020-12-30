@@ -78,7 +78,7 @@ jobs:
           name: build
 
       - name: Publish project to NuGet
-        run: dotnet nuget push '${{ github.repository.name }}.*.nupkg' -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push '*.nupkg' -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json
 
       - name: Unlist alpha and beta packages on NuGet
         uses: darenm/unlist-nuget@v1
@@ -100,10 +100,10 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
-          name: Build
+          name: build
 
       - name: Authorize with Github Package Registry
         run: dotnet nuget add source https://nuget.pkg.github.com/${{ github.event.repository_owner }}/index.json -n "github" -u "${{ github.event.repository_owner }}" -p "${{secrets.ADMIN_TOKEN}}"
 
       - name: Publish project to Github Package Registry
-        run: dotnet nuget push '${{ github.repository.name }}.*.nupkg' -s github
+        run: dotnet nuget push '*.nupkg' -s github
