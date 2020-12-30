@@ -65,7 +65,7 @@ jobs:
   publish-nuget:
     needs: [build]
     name: Publish to NuGet
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -77,14 +77,8 @@ jobs:
         with:
           name: build
 
-      - name: Authorize with Github Package Registry
-        run: dotnet nuget add source https://nuget.pkg.github.com/${{ github.event.repository_owner }}/index.json -n "github" -u "${{ github.event.repository_owner }}" -p "${{secrets.ADMIN_TOKEN}}"
-
       - name: Publish project to NuGet
         run: dotnet nuget push '${{ github.repository.name }}.*.nupkg' -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json
-
-      - name: Publish project to Github Package Registry
-        run: dotnet nuget push '${{ github.repository.name }}.*.nupkg' -s github
 
       - name: Unlist alpha and beta packages on NuGet
         uses: darenm/unlist-nuget@v1
@@ -92,3 +86,24 @@ jobs:
           NUGET_PACKAGE: ${{ github.repository.name }}
           VERSION_REGEX: (.*alpha.*)|(.*beta.*)
           NUGET_KEY: ${{secrets.NUGET_KEY}}
+
+  publish-github:
+    needs: [build]
+    name: Publish to GitHub
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Build
+
+      - name: Authorize with Github Package Registry
+        run: dotnet nuget add source https://nuget.pkg.github.com/${{ github.event.repository_owner }}/index.json -n "github" -u "${{ github.event.repository_owner }}" -p "${{secrets.ADMIN_TOKEN}}"
+
+      - name: Publish project to Github Package Registry
+        run: dotnet nuget push '${{ github.repository.name }}.*.nupkg' -s github
